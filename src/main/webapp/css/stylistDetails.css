@@ -1,0 +1,60 @@
+/*these are style Details page css*/
+#Details th, td {
+    padding: 30px;
+    text-align: left;
+}
+#Details{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    font-size: medium;
+}
+#Details tr:nth-child(even){background-color: #f2f2f2;}
+
+#Details th {
+
+    background-color: #4bd2c5;
+        color: floralwhite;
+}
+
+/*These area booking.html css styles*/
+#timings .button {
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 300px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#timings .btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+#timings .btn span:after {
+    content: 'Book »';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+
+    /*the way the book>> comes after hover from right side*/
+    right: -50px;
+
+    transition: 0.5s;
+}
+/*to show the gap between boknow text and time*/
+#timings .btn:hover span {
+    padding-right: 70px;
+}
+
+#timings  .btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}

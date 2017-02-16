@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+
+    <link href='fullcalendar.css' rel='stylesheet' />
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id='calendar'>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src='jquery.min.js'></script>
+<script src='moment.min.js'></script>
+<script src='fullcalendar.min.js'></script>
+<script>
+    $(document).ready(function() {
+        // page is now ready, initialize the calendar...
+        // options and github  - http://fullcalendar.io/
+
+        $('#calendar').fullCalendar({
+            dayClick: function() {
+                alert('a day has been clicked!');
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.springmaven"/>
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/**" location="/"/>
+
+    <mvc:view-controller path="/" view-name="index"/>
+    <!--	Define Dispatcher Servlet XML
+    In dispatcher servlet we will define viewResolve which help Spring to resolve the exact location of views.-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean id="vendorDAO" class="com.springmaven.dao.VendorDAOImpl"/>
+    <bean id="hairStyleDAO" class="com.springmaven.dao.HairStyleDAOImpl"/>
+    <bean id="hairTreatmentDAO" class="com.springmaven.dao.HairTreatmentDAOImpl"/>
+    <bean id="skinTreatmentDAO" class="com.springmaven.dao.SkinTreatmentDAOImpl"/>
+    <bean id="spaDAO" class="com.springmaven.dao.SpaDAOImpl"/>
+    <bean id="userDAO" class="com.springmaven.dao.UserDAOImpl"/>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/seturstyle?useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+    <!--For FileUpload-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--<property name="uploadTempDir" ref="uploadDirResource" />-->
+    </bean>
+
+    <!--<bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">-->
+        <!--<constructor-arg>-->
+            <!--<value>C:/Database/</value>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+    <!--For Sending Mail-->
+    <bean id="emailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="setuastyle@gmail.com"/>
+        <property name="password" value="msitmsit"/>
+
+        <!-- The name of the property, following JavaBean naming conventions -->
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="sendEmail" class="com.springmaven.model.Email"/>
+</beans>
